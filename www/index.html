@@ -1,0 +1,76 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.css">
+<link rel="stylesheet" type="text/css" href="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.min.css" /> 
+<script type='text/javascript' src='http://code.jquery.com/jquery-2.0.2.js'></script>
+<script type="text/javascript" src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.js"></script>
+
+<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.core.min.js"></script>
+<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/latest/jqm-datebox.mode.calbox.min.js"></script>
+<script type="text/javascript" src="http://dev.jtsage.com/cdn/datebox/i18n/jquery.mobile.datebox.i18n.en_US.utf8.js"></script>
+
+  <body>
+    <!-- Start of first page -->
+    <div data-role="page" id="menu">
+        <div data-role="header">
+            	<h1>PadelFirst Reservation</h1>
+
+        </div>
+        <!-- /header -->
+        <div data-role="content">
+            <p>Bienvenue à l'application de reservation de padel de PadelFirst. 
+            <a href="#reserver"  data-role="button" data-transition="flip">Reserver Piste</a>
+            <a href="#profile"  data-role="button" data-transition="flip">Profile de Membre</a>
+            </p>
+        </div>
+        <!-- /content -->
+        <div data-role="footer">
+            	<h4>Page Footer</h4>
+
+        </div>
+        <!-- /header -->
+    </div>
+    <!-- /page -->
+
+
+    <!-- Start of second page -->
+    <div data-role="page" id="reserver">
+        <div data-role="header">
+            	<h1>Reservation</h1>
+
+        </div>
+        <!-- /header -->
+        <div data-role="content">
+            <p>Choisiser la date</p>
+            <input name="mode1" id="mode1" type="text" data-role="datebox" data-options='{"mode":"calbox", "useNewStyle":true}' />
+            <a href="#disponibilite"  data-role="button" data-transition="flip">Voir disponibilité</a>
+            <a href="#menu"  data-role="button" data-transition="flip">Menu Principal</a>
+        </div>
+        <!-- /content -->
+        <div data-role="footer">
+            	<h4>Page Footer</h4>
+
+        </div>
+        <!-- /header -->
+    </div>
+    <!-- /page -->
+    
+    <!-- Start of third page -->
+    <div data-role="page" id="profile">
+        <div data-role="header">
+            	<h1>Profile</h1>
+
+        </div>
+        <!-- /header -->
+        <div data-role="content">
+            <p>Profile de Membre</p>
+            <a href="#menu"  data-role="button" data-transition="flip">Menu Principal</a>
+        </div>
+        <!-- /content -->
+        <div data-role="footer">
+            	<h4>Page Footer</h4>
+
+        </div>
+        <!-- /header -->
+    </div>
+    <!-- /page -->
+</body>
