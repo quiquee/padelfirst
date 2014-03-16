@@ -99,7 +99,7 @@ public class Config {
                 }
                 else if (strNode.equals("log")) {
                     String level = xml.getAttributeValue(null, "level");
-                    Log.d(TAG, "The <log> tags is deprecated. Use <preference name=\"loglevel\" value=\"" + level + "\"/> instead.");
+                    Log.d(TAG, "The <log> tag is deprecated. Use <preference name=\"loglevel\" value=\"" + level + "\"/> instead.");
                     if (level != null) {
                         LOG.setLogLevel(level);
                     }
@@ -224,8 +224,7 @@ public class Config {
 
     public static String getStartUrl() {
         if (self == null || self.startUrl == null) {
-            return "http://jsfiddle.net/quiquee/6Fc5w/16/embedded/result/" ;
-        	//return "file:///android_asset/www/index.html";
+            return "file:///android_asset/www/index.html";
         }
         return self.startUrl;
     }
