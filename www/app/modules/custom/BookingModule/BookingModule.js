@@ -24,3 +24,21 @@ function BookingModule_block_view(delta) {
   }
   return content;
 }
+
+/**
+ * Implements hook_menu().
+ */
+function BookingModule_menu() {
+  var items = { 'BookingModule/hello_world': {
+      'title': 'Logout',
+      'page_callback': 'BookingModule_hello_world'
+    }
+  };
+  
+  return items;
+}
+
+
+function BookingModule_hello_world() {
+	  return '<p>Hello App World!</p>';
+	}

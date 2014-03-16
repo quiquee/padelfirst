@@ -134,7 +134,7 @@ drupalgap.settings.menus['user_menu_authenticated'] = {
     },
     {
         title: 'Reservations',
-        path: 'book',
+        path: 'BookingModule/hello_world',
         options: {
           attributes: {
             'data-theme': 'b'
