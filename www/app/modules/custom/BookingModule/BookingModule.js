@@ -29,9 +29,9 @@ function BookingModule_block_view(delta) {
  * Implements hook_menu().
  */
 function BookingModule_menu() {
-  var items = { 'BookingModule/hello_world': {
+  var items = { 'BookingModule/book': {
       'title': 'Logout',
-      'page_callback': 'BookingModule_hello_world'
+      'page_callback': 'BookingModule_book'
     }
   };
   
@@ -39,6 +39,9 @@ function BookingModule_menu() {
 }
 
 
-function BookingModule_hello_world() {
-	  return '<p>Hello App World!</p>';
+function BookingModule_book() {
+	  return '<p>Coming soon!</p>';
 	}
+
+
+

@@ -3,6 +3,8 @@
 /****************************************|
  * Drupal Settings (provided by jDrupal) |
  ****************************************/
+// Clear all local storage as per http://www.drupalgap.org/node/211
+window.localStorage.clear();
  
 /* Drupal Paths */
  
@@ -81,6 +83,7 @@ drupalgap.settings.loader = {
 
 //Drupal.modules.custom['my_module'] = {};
 Drupal.modules.custom['BookingModule'] = {};
+Drupal.modules.custom['PlayersModule'] = {};
 
 /***************************************|
  * Menus - http://drupalgap.org/node/85 |
@@ -134,7 +137,7 @@ drupalgap.settings.menus['user_menu_authenticated'] = {
     },
     {
         title: 'Reservations',
-        path: 'book',
+        path: 'BookingModule/book',
         options: {
           attributes: {
             'data-theme': 'b'
@@ -157,8 +160,8 @@ drupalgap.settings.menus['main_menu'] = {
       }
     },
     {
-      title:'Taxonomy',
-      path:'taxonomy/vocabularies',
+      title:'Players',
+      path:'PlayersModule/list',
       options:{
         attributes:{
           'data-icon':'grid'

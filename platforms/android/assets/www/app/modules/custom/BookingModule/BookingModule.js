@@ -24,3 +24,24 @@ function BookingModule_block_view(delta) {
   }
   return content;
 }
+
+/**
+ * Implements hook_menu().
+ */
+function BookingModule_menu() {
+  var items = { 'BookingModule/book': {
+      'title': 'Logout',
+      'page_callback': 'BookingModule_book'
+    }
+  };
+  
+  return items;
+}
+
+
+function BookingModule_book() {
+	  return '<p>Coming soon!</p>';
+	}
+
+
+
