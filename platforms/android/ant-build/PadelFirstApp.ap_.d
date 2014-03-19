@@ -78,8 +78,10 @@
 /home/enrique/code/padelfirst/platforms/android/assets/www/app/README \
 /home/enrique/code/padelfirst/platforms/android/assets/www/app/default.settings.js \
 /home/enrique/code/padelfirst/platforms/android/assets/www/app/modules/custom \
+/home/enrique/code/padelfirst/platforms/android/assets/www/app/modules/custom/Ranking \
 /home/enrique/code/padelfirst/platforms/android/assets/www/app/modules/custom/PlayersModule \
 /home/enrique/code/padelfirst/platforms/android/assets/www/app/modules/custom/BookingModule \
+/home/enrique/code/padelfirst/platforms/android/assets/www/app/modules/custom/Ranking/Ranking.js \
 /home/enrique/code/padelfirst/platforms/android/assets/www/app/modules/custom/PlayersModule/PlayersModule.js \
 /home/enrique/code/padelfirst/platforms/android/assets/www/app/modules/custom/BookingModule/BookingModule.js \
 /home/enrique/code/padelfirst/platforms/android/assets/www/spec/index.js \

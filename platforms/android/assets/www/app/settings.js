@@ -84,6 +84,7 @@ drupalgap.settings.loader = {
 //Drupal.modules.custom['my_module'] = {};
 Drupal.modules.custom['BookingModule'] = {};
 Drupal.modules.custom['PlayersModule'] = {};
+Drupal.modules.custom['Ranking'] = {};
 
 /***************************************|
  * Menus - http://drupalgap.org/node/85 |
@@ -168,6 +169,15 @@ drupalgap.settings.menus['main_menu'] = {
         }
       }
     },
+    {
+        title:'Ranking',
+        path:'Ranking/list',
+        options:{
+          attributes:{
+            'data-icon':'grid'
+          }
+        }
+      },
     {
       title:'Users',
       path:'user-listing',

@@ -23,4 +23,6 @@ function BookingModule_hello_world() {
 	  return '<p>Hello App World!</p>';
 	}
 
+Luego para modelizar la lista en drupal.
+Hay que crear un modulo
 
