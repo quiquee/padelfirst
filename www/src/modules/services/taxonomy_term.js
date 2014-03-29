@@ -1,17 +1,17 @@
 drupalgap.services.taxonomy_term = {
-  'create':{
-    'options':{
-      'type':'post',
-      'path':'taxonomy_term.json',
-      'success':function(result){
+  'create': {
+    'options': {
+      'type': 'post',
+      'path': 'taxonomy_term.json',
+      'success': function(result) {
         // If the term was not successfully created, notify the user of the
         // problem.
         if (result[0] != 1) {
           alert('taxonomy_term - create failed - ' + JSON.stringify(result));
         }
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.taxonomy_term.create.options, options);
         api_options.data = drupalgap_taxonomy_term_assemble_data(options);
@@ -20,27 +20,27 @@ drupalgap.services.taxonomy_term = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'taxonomy_term Create Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- create -->
-  'retrieve':{
-    'options':{
-      'type':'get',
-      'path':'taxonomy_term/%tid.json',
-      'success':function(taxonomy_term){
+  'retrieve': {
+    'options': {
+      'type': 'get',
+      'path': 'taxonomy_term/%tid.json',
+      'success': function(taxonomy_term) {
         drupalgap_entity_render_content('taxonomy_term', taxonomy_term);
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.tid) {
           navigator.notification.alert(
             'No Term ID provided!',
-            function(){},
+            function() {},
             'taxonomy_term Retrieve Error',
             'OK'
           );
@@ -53,25 +53,25 @@ drupalgap.services.taxonomy_term = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'taxonomy_term Retrieve Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- retrieve -->
-  'update':{
-    'options':{
-      'type':'put',
-      'path':'taxonomy_term/%tid.json',
-      'success':function(result){
+  'update': {
+    'options': {
+      'type': 'put',
+      'path': 'taxonomy_term/%tid.json',
+      'success': function(result) {
         // If the update was not successful, notify the user.
         if (result[0] != 2) {
           alert('taxonomy_term - update failed - ' + JSON.stringify(result));
         }
       }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.taxonomy_term.update.options, options);
         api_options.data = drupalgap_taxonomy_term_assemble_data(options);
@@ -81,25 +81,25 @@ drupalgap.services.taxonomy_term = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'taxonomy_term Update Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- update -->
-  'del':{
-    'options':{
-      'type':'delete',
-      'path':'taxonomy_term/%tid.json',
-      'success':function(result) {
+  'del': {
+    'options': {
+      'type': 'delete',
+      'path': 'taxonomy_term/%tid.json',
+      'success': function(result) {
         // If the delete was not successful, notify the user.
         if (result[0] != 3) {
           alert('taxonomy_term - delete failed - ' + JSON.stringify(result));
         }
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.taxonomy_term.del.options, options);
         api_options.path = 'taxonomy_term/' + options.tid + '.json';
@@ -109,26 +109,26 @@ drupalgap.services.taxonomy_term = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'taxonomy_term Delete Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- delete -->
-  'selectNodes':{
-    'options':{
-      'type':'post',
-      'path':'taxonomy_term/selectNodes.json',
-      'success':function(tree){
-      },
+  'selectNodes': {
+    'options': {
+      'type': 'post',
+      'path': 'taxonomy_term/selectNodes.json',
+      'success': function(tree) {
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.tid) {
           navigator.notification.alert(
             'No Term ID provided!',
-            function(){},
+            function() {},
             'taxonomy_term selectNodes Error',
             'OK'
           );
@@ -157,20 +157,20 @@ drupalgap.services.taxonomy_term = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'taxonomy_term selectNodes Error',
           'OK'
         );
       }
-    },
-  }, // <!-- selectNodes -->
+    }
+  } // <!-- selectNodes -->
 };
 
 /**
  * Assembles the data uri component for taxonomy term entity service resource
  * calls.
  */
-function drupalgap_taxonomy_term_assemble_data (options) {
+function drupalgap_taxonomy_term_assemble_data(options) {
   // TODO - I'm pretty sure this function's implementation is causing this
   // console log error to show up when terms are created/updates:
   // TypeError: Result of expression 'this.element' [undefined] is not an object.

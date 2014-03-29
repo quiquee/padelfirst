@@ -1,12 +1,12 @@
 drupalgap.services.node = {
-  'create':{
-    'options':{
-      'type':'post',
-      'path':'node.json',
-      'success':function(node){
-      },
+  'create': {
+    'options': {
+      'type': 'post',
+      'path': 'node.json',
+      'success': function(node) {
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.node.create.options, options);
         api_options.data = drupalgap_entity_assemble_data('node', options.node.type, options.node);
@@ -15,27 +15,27 @@ drupalgap.services.node = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'Node Create Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- create -->
-  'retrieve':{
-    'options':{
-      'type':'get',
-      'path':'node/%nid.json',
-      'success':function(node){
+  'retrieve': {
+    'options': {
+      'type': 'get',
+      'path': 'node/%nid.json',
+      'success': function(node) {
         drupalgap_entity_render_content('node', node);
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.nid) {
           navigator.notification.alert(
             'No node id provided!',
-            function(){},
+            function() {},
             'Node Retrieve Error',
             'OK'
           );
@@ -48,21 +48,21 @@ drupalgap.services.node = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'Node Retrieve Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- retrieve -->
-  'update':{
-    'options':{
-      'type':'put',
-      'path':'node/%nid.json',
-      'success':function(node){
-      },
+  'update': {
+    'options': {
+      'type': 'put',
+      'path': 'node/%nid.json',
+      'success': function(node) {
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.node.update.options, options);
         api_options.data = drupalgap_entity_assemble_data('node', options.node.type, options.node);
@@ -72,27 +72,27 @@ drupalgap.services.node = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'Node Update Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- update -->
-  'del':{
-    'options':{
-      'type':'delete',
-      'path':'node/%nid.json',
-      'success':function(result){
+  'del': {
+    'options': {
+      'type': 'delete',
+      'path': 'node/%nid.json',
+      'success': function(result) {
         if (result[0]) {
-          
+
         }
         else {
           alert('node delete - error - ' + JSON.stringify(result));
         }
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.node.del.options, options);
         api_options.path = 'node/' + options.nid + '.json';
@@ -102,13 +102,13 @@ drupalgap.services.node = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'Node Delete Error',
           'OK'
         );
       }
-    },
-  }, // <!-- delete -->
+    }
+  } // <!-- delete -->
 };
 
 /**
@@ -116,13 +116,13 @@ drupalgap.services.node = {
  */
 function drupalgap_node_assemble_data(options) {
   try {
-    
+
     // TODO - this needs to be turned into drupalgap_entity_assemble_date() and
     // instead of iterating over possible fields, it should iterate over the
     // fields set in the options.entity variable, that way it builds the data
     // string off of whatever is sent in, and we don't have to guess how to
     // build it.
-    
+
     // Determine language code and start building data string.
     var lng = language_default();
     var data = 'node[language]=' + encodeURIComponent(lng);
@@ -132,10 +132,10 @@ function drupalgap_node_assemble_data(options) {
     if (options.node.title) {
       data += '&node[title]=' + encodeURIComponent(options.node.title);
     }
-    
+
     // Iterate over the fields on this node and add them to the data string.
     var fields = drupalgap_field_info_instances('node', options.node.type);
-    $.each(fields, function(field_name, field){
+    $.each(fields, function(field_name, field) {
         var key = drupalgap_field_key(field_name);
         if (key) {
           // Iterate over each delta value in the field cardinality.
@@ -165,7 +165,7 @@ function drupalgap_node_assemble_data(options) {
           }
         }
     });
-    
+
     // Return the data string.
     return data;
   }

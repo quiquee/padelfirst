@@ -3,9 +3,9 @@
 /****************************************|
  * Drupal Settings (provided by jDrupal) |
  ****************************************/
- 
+
 /* Drupal Paths */
- 
+
 // Site Path (do not use a trailing slash)
 Drupal.settings.site_path = ''; // e.g. http://www.example.com
 
@@ -40,7 +40,7 @@ Drupal.settings.cache.views.expiration = 3600;
 
 // App Title
 drupalgap.settings.title = 'DrupalGap';
- 
+
 // App Front Page
 drupalgap.settings.front = 'dashboard';
 
@@ -88,7 +88,7 @@ drupalgap.settings.menus = {}; // Do not remove this line.
 
 // User Menu Anonymous
 drupalgap.settings.menus['user_menu_anonymous'] = {
-  links:[
+  links: [
     {
       title: 'Login',
       path: 'user/login',
@@ -112,7 +112,7 @@ drupalgap.settings.menus['user_menu_anonymous'] = {
 
 // User Menu Authenticated
 drupalgap.settings.menus['user_menu_authenticated'] = {
-  links:[
+  links: [
     {
       title: 'My Account',
       path: 'user',
@@ -136,31 +136,31 @@ drupalgap.settings.menus['user_menu_authenticated'] = {
 
 // Main Menu
 drupalgap.settings.menus['main_menu'] = {
-  links:[
+  links: [
     {
-      title:'Content',
-      path:'node',
-      options:{
-        attributes:{
-          'data-icon':'star'
+      title: 'Content',
+      path: 'node',
+      options: {
+        attributes: {
+          'data-icon': 'star'
         }
       }
     },
     {
-      title:'Taxonomy',
-      path:'taxonomy/vocabularies',
-      options:{
-        attributes:{
-          'data-icon':'grid'
+      title: 'Taxonomy',
+      path: 'taxonomy/vocabularies',
+      options: {
+        attributes: {
+          'data-icon': 'grid'
         }
       }
     },
     {
-      title:'Users',
-      path:'user-listing',
-      options:{
-        attributes:{
-          'data-icon':'info'
+      title: 'Users',
+      path: 'user-listing',
+      options: {
+        attributes: {
+          'data-icon': 'info'
         }
       }
     }
@@ -174,37 +174,37 @@ drupalgap.settings.blocks = {}; // Do not remove this line.
 
 // Easy Street 3 Theme Blocks
 drupalgap.settings.blocks.easystreet3 = {
-  header:{
-    title:{}
+  header: {
+    title: {}
   },
-  navigation:{
-    user_menu_anonymous:{
-      roles:{
-        value:['anonymous user'],
-        mode:'include',
+  navigation: {
+    user_menu_anonymous: {
+      roles: {
+        value: ['anonymous user'],
+        mode: 'include'
       }
     },
-    user_menu_authenticated:{
-      roles:{
-        value:['authenticated user'],
-        mode:'include',
+    user_menu_authenticated: {
+      roles: {
+        value: ['authenticated user'],
+        mode: 'include'
       }
     }
   },
-  sub_navigation:{
-    main_menu:{
-      roles:{
-        value:['administrator'],
-        mode:'include',
+  sub_navigation: {
+    main_menu: {
+      roles: {
+        value: ['administrator'],
+        mode: 'include'
       }
     },
-    primary_local_tasks:{},
+    primary_local_tasks: {}
   },
-  content:{
-    main:{}
+  content: {
+    main: {}
   },
-  footer:{
-    powered_by:{}
+  footer: {
+    powered_by: {}
   }
 };
 
@@ -215,35 +215,35 @@ drupalgap.settings.menus.regions = {}; // Do not remove this line.
 
 // Header Region Links
 drupalgap.settings.menus.regions['header'] = {
-  links:[
+  links: [
     /* Home Button */
     {
-      title:'Home',
-      path:'',
-      options:{
-        attributes:{
-          "data-icon":"home",
-          "class":"ui-btn-left"
+      title: 'Home',
+      path: '',
+      options: {
+        attributes: {
+          'data-icon': 'home',
+          'class': 'ui-btn-left'
         }
       },
-      pages:{
-        value:[''],
-        mode:"exclude"
+      pages: {
+        value: [''],
+        mode: 'exclude'
       }
     },
     /* Back Button */
     {
-      title:'Back',
-      options:{
-        attributes:{
-          "data-icon":"back",
-          "class":"ui-btn-right",
-          "onclick":"javascript:drupalgap_back();"
+      title: 'Back',
+      options: {
+        attributes: {
+          'data-icon': 'back',
+          'class': 'ui-btn-right',
+          'onclick': 'javascript:drupalgap_back();'
         }
       },
-      pages:{
-        value:[''],
-        mode:"exclude"
+      pages: {
+        value: [''],
+        mode: 'exclude'
       }
     }
   ]

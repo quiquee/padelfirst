@@ -1,11 +1,11 @@
 // @deprecated
 drupalgap.services.drupalgap_system = {
-  'connect':{
-    'options':{
-      'type':'post',
-      'path':'drupalgap_system/connect.json',
-      'success':function(data){
-        var message = 'drupalgap_system.connect has been deprecated! ' + 
+  'connect': {
+    'options': {
+      'type': 'post',
+      'path': 'drupalgap_system/connect.json',
+      'success': function(data) {
+        var message = 'drupalgap_system.connect has been deprecated! ' +
           'Use system_connect() instead.';
         alert(message);
         return;
@@ -19,24 +19,24 @@ drupalgap.services.drupalgap_system = {
         drupalgap.field_info_fields = data.field_info_fields;
         drupalgap.taxonomy_vocabularies = drupalgap_taxonomy_vocabularies_extract(data.taxonomy_vocabularies);
         drupalgap_service_resource_extract_results({
-          'service':'drupalgap_system',
-          'resource':'connect',
-          'data':data
+          'service': 'drupalgap_system',
+          'resource': 'connect',
+          'data': data
         });
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         drupalgap.api.call(drupalgap_chain_callbacks(drupalgap.services.drupalgap_system.connect.options, options));
       }
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'DrupalGap System Connect Error',
           'OK'
         );
       }
-    },
-  }, // <!-- connect -->
+    }
+  } // <!-- connect -->
 };

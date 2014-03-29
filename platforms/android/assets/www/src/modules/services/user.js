@@ -1,9 +1,9 @@
 drupalgap.services.user = {
-  'login':{
-    'options':{
-      'type':'post',
-      'path':'user/login.json',
-      'success':function(data){
+  'login': {
+    'options': {
+      'type': 'post',
+      'path': 'user/login.json',
+      'success': function(data) {
         Drupal.user = data.user;
         // WARNING - we don't automatically make a call to acquire the CSRF
         // token here. The DrupalGap User Login resource automatically gets the
@@ -12,9 +12,9 @@ drupalgap.services.user = {
         // drupalgap.sessid with it.
         // Remove all pages from the DOM.
         drupalgap_remove_pages_from_dom();
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.name || !options.pass) {
           if (drupalgap.settings.debug) {
@@ -30,58 +30,58 @@ drupalgap.services.user = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'User Login Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- login -->
-  'logout':{
-    'options':{
-      'type':'post',
-      'path':'user/logout.json',
-      'success':function(data){
+  'logout': {
+    'options': {
+      'type': 'post',
+      'path': 'user/logout.json',
+      'success': function(data) {
         // Clear the session id then remove it from local storage, then reset
         // the drupalgap user and call drupalgap system connect.
         drupalgap.sessid = null;
         window.localStorage.removeItem('sessid');
-        Drupal.user = {'uid':0,'roles':{'1':'anonymous user'}};
-        drupalgap.services.drupalgap_system.connect.call({'async':false});
+        Drupal.user = {'uid': 0, 'roles': {'1': 'anonymous user'}};
+        drupalgap.services.drupalgap_system.connect.call({'async': false});
         // Remove all pages from the DOM.
         drupalgap_remove_pages_from_dom();
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         drupalgap.api.call(drupalgap_chain_callbacks(drupalgap.services.user.logout.options, options));
       }
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'User Logout Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- logout -->
-  'register':{
-    'options':{
-      'type':'post',
-      'path':'user/register.json',
-      'success':function(data){
+  'register': {
+    'options': {
+      'type': 'post',
+      'path': 'user/register.json',
+      'success': function(data) {
         // TODO - depending on the site's user registration settings,
         // display an informative message about what to do next.
         navigator.notification.alert(
             'Registration Complete!',
-            function(){},
+            function() {},
             'Notification',
             'OK'
           );
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.name) {
           if (drupalgap.settings.debug) {
@@ -103,22 +103,22 @@ drupalgap.services.user = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'User Registration Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- register -->
-  'retrieve':{
-    'options':{
-      'type':'get',
-      'path':'user/%uid.json',
-      'success':function(account){
+  'retrieve': {
+    'options': {
+      'type': 'get',
+      'path': 'user/%uid.json',
+      'success': function(account) {
         drupalgap.account = account;
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.uid) {
           if (drupalgap.settings.debug) {
@@ -133,19 +133,19 @@ drupalgap.services.user = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'User Retrieve Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- retrieve -->
-  'update':{
-    'options':{
-      'type':'put',
-      'path':'user/%uid.json',
+  'update': {
+    'options': {
+      'type': 'put',
+      'path': 'user/%uid.json'
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.user.update.options, options);
         api_options.data = drupalgap_user_assemble_data(options);
@@ -155,19 +155,19 @@ drupalgap.services.user = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'User Update Error',
           'OK'
         );
       }
-    },
-  }, // <!-- update -->
+    }
+  } // <!-- update -->
 };
 
 /**
  * Assembles the data uri component for user entity service resource calls.
  */
-function drupalgap_user_assemble_data (options) {
+function drupalgap_user_assemble_data(options) {
   var data = '';
   if (options.account.name) {
     data += '&name=' + encodeURIComponent(options.account.name);

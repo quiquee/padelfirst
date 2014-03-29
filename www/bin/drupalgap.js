@@ -858,6 +858,35 @@ function drupalgap_item_list_populate(list_css_selector, items) {
   catch (error) { console.log('drupalgap_item_list_populate - ' + error); }
 }
 
+
+
+/**
+ * Given an html table element id and an array of items, this will clear the
+ * table, populate it with the items, and then refresh the list.
+ * @param {String} table_css_selector
+ * @param {Array} items
+ * items follow the.
+ */
+function drupalgap_table_populate(table_css_selector, items) {
+  try {
+    // @todo - This could use some validation and alerts for improper input.
+    // Select only the body. Other things are already setup
+      table_css_selector = table_css_selector + '> tbody ';
+      $(table_css_selector).html('');
+      for (var i = 0; i < items.length; i++) {
+          var row = items[i];
+          var rowhtml = '';
+          for (var j = 0; j < row.length; j++) {
+              rowhtml = rowhtml + '<td>' + row[j] + '</td>';
+          }
+          $('<tr>').html(rowhtml).appendTo($(table_css_selector));
+      }
+      $(table_css_selector).rebuild();
+      console.log('drupalgap_table_populate - ' + $(table_css_selector).html());
+      }
+      catch (error) { console.log('drupalgap_table_populate - ' + error); }
+}
+
 /**
  * Given a jQM page event, and the corresponding callback function name that
  * handles the event, this function will call the callback function, if it has
@@ -4667,14 +4696,15 @@ function theme_table(variables) {
   try {
     var html = '<table ' + drupalgap_attributes(variables.attributes) + '>';
     if (variables.header) {
-      html += '<tr>';
+      html += '<thead><tr>';
       $.each(variables.header, function(index, column) {
           if (column.data) {
-            html += '<th>' + column.data + '</th>';
+            html += '<td>' + column.data + '</td>';
           }
       });
-      html += '</tr>';
+      html += '</tr></thead>';
     }
+    html += '<tbody>';
     if (variables.rows) {
       $.each(variables.rows, function(row_index, row) {
           html += '<tr>';
@@ -4686,7 +4716,8 @@ function theme_table(variables) {
           html += '</tr>';
       });
     }
-    return html + '</table>';
+    // console.log('theme_table - ' + html + '</tbody></table>');
+    return html + '</tbody></table>';
   }
   catch (error) { console.log('theme_table - ' + error); }
 }
@@ -7569,8 +7600,8 @@ function system_dashboard_page() {
       '</h4>'
     };
     content.welcome = {
-      markup: '<h2 style="text-align: center;">Padelfirst</h2>' +
-        '<p>La 1ère entreprise consacrée au Padel en Suisse.</p>'
+      markup: '<h2 style="text-align: center;">Welcome to DrupalGap</h2>' +
+        '<p>The open source mobile application development kit for Drupal!</p>'
     };
     if (drupalgap.settings.logo) {
       content.logo = {
@@ -7772,6 +7803,7 @@ function user_listing() {
         'attributes': {'id': 'user_listing_items'}
       }
     };
+    console.log('PlayersModule_list - list created');
     return content;
   }
   catch (error) { console.log('user_listing - ' + error); }

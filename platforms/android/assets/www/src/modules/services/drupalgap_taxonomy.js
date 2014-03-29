@@ -1,13 +1,13 @@
 drupalgap.services.drupalgap_taxonomy = {
-  'get_vocabularies':{
-    'options':{
-      'type':'post',
-      'path':'drupalgap_taxonomy/get_vocabularies.json',
-      'success':function(vocabularies){
+  'get_vocabularies': {
+    'options': {
+      'type': 'post',
+      'path': 'drupalgap_taxonomy/get_vocabularies.json',
+      'success': function(vocabularies) {
 
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         console.log(
           'WARNING: drupalgap.services.drupalgap_taxonomy.get_vocabularies ' +

@@ -1,10 +1,10 @@
 drupalgap.services.file = {
-  'create':{
-    'options':{
-      'type':'post',
-      'path':'file.json',
+  'create': {
+    'options': {
+      'type': 'post',
+      'path': 'file.json'
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.file.create.options, options);
         api_options.data = options.file;
@@ -13,12 +13,12 @@ drupalgap.services.file = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'File Create Error',
           'OK'
         );
       }
-    },
-  }, // <!-- create -->
+    }
+  } // <!-- create -->
 };
 

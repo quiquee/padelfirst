@@ -1,10 +1,10 @@
 drupalgap.services.taxonomy_vocabulary = {
-  'create':{
-    'options':{
-      'type':'post',
-      'path':'taxonomy_vocabulary.json',
+  'create': {
+    'options': {
+      'type': 'post',
+      'path': 'taxonomy_vocabulary.json'
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.taxonomy_vocabulary.name) {
           alert('taxonomy_vocabulary - create - no name provided');
@@ -27,27 +27,27 @@ drupalgap.services.taxonomy_vocabulary = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'taxonomy_vocabulary Create Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- create -->
-  'retrieve':{
-    'options':{
-      'type':'get',
-      'path':'taxonomy_vocabulary/%vid.json',
-      'success':function(taxonomy_vocabulary){
+  'retrieve': {
+    'options': {
+      'type': 'get',
+      'path': 'taxonomy_vocabulary/%vid.json',
+      'success': function(taxonomy_vocabulary) {
         drupalgap_entity_render_content('taxonomy_vocabulary', taxonomy_vocabulary);
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.vid) {
           navigator.notification.alert(
             'No Vocabulary ID provided!',
-            function(){},
+            function() {},
             'taxonomy_vocabulary Retrieve Error',
             'OK'
           );
@@ -60,19 +60,19 @@ drupalgap.services.taxonomy_vocabulary = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'taxonomy_vocabulary Retrieve Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- retrieve -->
-  'update':{
-    'options':{
-      'type':'put',
-      'path':'taxonomy_vocabulary/%vid.json',
+  'update': {
+    'options': {
+      'type': 'put',
+      'path': 'taxonomy_vocabulary/%vid.json'
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.taxonomy_vocabulary.update.options, options);
         api_options.data = drupalgap_taxonomy_vocabulary_assemble_data(options);
@@ -82,19 +82,19 @@ drupalgap.services.taxonomy_vocabulary = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'taxonomy_vocabulary Update Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- update -->
-  'del':{
-    'options':{
-      'type':'delete',
-      'path':'taxonomy_vocabulary/%vid.json',
+  'del': {
+    'options': {
+      'type': 'delete',
+      'path': 'taxonomy_vocabulary/%vid.json'
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.taxonomy_vocabulary.del.options, options);
         api_options.path = 'taxonomy_vocabulary/' + options.vid + '.json';
@@ -104,23 +104,23 @@ drupalgap.services.taxonomy_vocabulary = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'taxonomy_vocabulary Delete Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- delete -->
-  'index':{
-    'options':{
-      'type':'get',
-      'path':'taxonomy_vocabulary.json',
-      'success':function(results){
+  'index': {
+    'options': {
+      'type': 'get',
+      'path': 'taxonomy_vocabulary.json',
+      'success': function(results) {
         dpm(results);
         alert('index success');
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.taxonomy_vocabulary.index.options, options);
         drupalgap.api.call(api_options);
@@ -128,26 +128,26 @@ drupalgap.services.taxonomy_vocabulary = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'taxonomy_vocabulary Index Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- index -->
-  'getTree':{
-    'options':{
-      'type':'post',
-      'path':'taxonomy_vocabulary/getTree.json',
-      'success':function(tree){
-      },
+  'getTree': {
+    'options': {
+      'type': 'post',
+      'path': 'taxonomy_vocabulary/getTree.json',
+      'success': function(tree) {
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.vid) {
           navigator.notification.alert(
             'No Vocabulary ID provided!',
-            function(){},
+            function() {},
             'taxonomy_vocabulary getTree Error',
             'OK'
           );
@@ -169,22 +169,22 @@ drupalgap.services.taxonomy_vocabulary = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'taxonomy_vocabulary getTree Error',
           'OK'
         );
       }
-    },
-  }, // <!-- getTree -->
+    }
+  } // <!-- getTree -->
 };
 
 /**
  * Assembles the data uri component for taxonomy vocabulary entity service
  * resource calls.
  */
-function drupalgap_taxonomy_vocabulary_assemble_data (options) {
+function drupalgap_taxonomy_vocabulary_assemble_data(options) {
   try {
-    var data = ''
+    var data = '';
     //data += 'vid=' + encodeURIComponent(options.taxonomy_term.vid);
     data += '&name=' + encodeURIComponent(options.taxonomy_vocabulary.name);
     data += '&machine_name=' + encodeURIComponent(options.taxonomy_vocabulary.machine_name);

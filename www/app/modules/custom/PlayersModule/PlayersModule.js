@@ -3,10 +3,10 @@
  */
 function PlayersModule_block_info() {
   var blocks = {
-	booking_block:{
-      delta:'booking_block',
-      module:'PlayersModule',
-    },
+	booking_block: {
+      delta: 'booking_block',
+      module: 'PlayersModule'
+    }
   };
   return blocks;
 }
@@ -35,7 +35,7 @@ function PlayersModule_menu() {
       'pageshow': 'PlayersModule_pageshow'
     }
   };
-  
+
   return items;
 }
 
@@ -48,12 +48,12 @@ function PlayersModule_list() {
 					'title': 'Users',
 					'items': [],
 					'attributes': {'id': 'PlayersList_items'}
-				}		
-		};	
-		 console.log('PlayersModule_list - list created' ) ;
+				}
+		};
+		 console.log('PlayersModule_list - list created');
 		return content;
 	}
-	catch (error) { console.log('PlayersModule_list - ' + error); 
+	catch (error) { console.log('PlayersModule_list - ' + error);
 	}
 }
 
@@ -70,7 +70,7 @@ function PlayersModule_pageshow() {
 				// Extract the users into items, then drop them in the list.
 				var items = [];
 				$.each(data.players, function(index, object) {
-					items.push(l(object.player.nombre + ' ' + object.player.apellido , 'user/' + object.player.email));
+					items.push(l(object.player.nombre + ' ' + object.player.apellido, 'user/' + object.player.email));
 				});
 				drupalgap_item_list_populate('#PlayersList_items', items);
 			}
@@ -78,6 +78,3 @@ function PlayersModule_pageshow() {
 	}
 	catch (error) { console.log('PlayersModule_pageshow - ' + error); }
 }
-
-
-

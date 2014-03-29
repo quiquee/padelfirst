@@ -1,6 +1,6 @@
 drupalgap.api = {
-'options':{ /* these are set by drupalgap_api_default_options() */ },
-  'call':function(options){
+'options': { /* these are set by drupalgap_api_default_options() */ },
+  'call': function(options) {
     try {
       // Get the default api options, then adjust to the caller's options if they are present.
       var api_options = drupalgap_api_default_options();
@@ -31,26 +31,26 @@ drupalgap.api = {
       if (!drupalgap.online) {
         navigator.notification.alert(
           'No network connection!',
-          function(){ drupalgap_goto('offline'); },
+          function() { drupalgap_goto('offline'); },
           'Offline',
           'OK'
         );
         return false;
       }
-      
+
       if (drupalgap.settings.debug) { dpm(call_options.url); }
-      
+
       // Get CSRF token.
       services_get_csrf_token(call_options);
       return;
-      
-      
-      
+
+
+
       _drupalgap_api_get_csrf_token(call_options, {
-          success:function() {
-            
+          success: function() {
+
             drupalgap_loading_message_show();
-            
+
             // Build api call object options.
             var api_object = {
               url: call_options.url,
@@ -60,31 +60,31 @@ drupalgap.api = {
               async: true,
               error: call_options.error,
               success: call_options.success,
-              service_resource:call_options.service_resource
-            }
-            
+              service_resource: call_options.service_resource
+            };
+
             // Synchronous call?
             if (!call_options.async) {
               api_object.async = false;
             }
-            
+
             // If there are any beforeSend declarations, attach them to the api
             // call object.
             if (call_options.beforeSend) {
               api_object.beforeSend = call_options.beforeSend;
             }
-            
+
             if (drupalgap.settings.debug) { dpm(api_object); }
-            
+
             // Make the call.
-            $.ajax(api_object);      
+            $.ajax(api_object);
           }
       });
     }
     catch (error) {
       navigator.notification.alert(
         error,
-        function(){},
+        function() {},
         'DrupalGap API Error',
         'OK'
       );
@@ -125,10 +125,10 @@ function _drupalgap_api_get_csrf_token(call_options, options) {
                         '?q=services/session/token';
         drupalgap_loading_message_show();
         $.ajax({
-            url:token_url,
-            type:'get',
-            dataType:'text',
-            success:function(token){
+            url: token_url,
+            type: 'get',
+            dataType: 'text',
+            success: function(token) {
               drupalgap_loading_message_hide();
               // Save the token to local storage as sessid, set drupalgap.sessid
               // with the token, attach the token and the request header to the
@@ -136,12 +136,12 @@ function _drupalgap_api_get_csrf_token(call_options, options) {
               window.localStorage.setItem('sessid', token);
               drupalgap.sessid = token;
               call_options.token = token;
-              call_options.beforeSend = function (request) {
-                request.setRequestHeader("X-CSRF-Token", call_options.token);
+              call_options.beforeSend = function(request) {
+                request.setRequestHeader('X-CSRF-Token', call_options.token);
               };
               options.success.call();
             },
-            error:function (jqXHR, textStatus, errorThrown) {
+            error: function(jqXHR, textStatus, errorThrown) {
               drupalgap_loading_message_hide();
               alert('Failed to retrieve CSRF token! (' + errorThrown +
                     ') You must upgrade your Drupal Services module to version 3.5 (or above)! ' +
@@ -153,8 +153,8 @@ function _drupalgap_api_get_csrf_token(call_options, options) {
         // We had a previous token available, let's use it by attaching it
         // to the call options and the CSRF header.
         call_options.token = token;
-        call_options.beforeSend = function (request) {
-          request.setRequestHeader("X-CSRF-Token", call_options.token);
+        call_options.beforeSend = function(request) {
+          request.setRequestHeader('X-CSRF-Token', call_options.token);
         };
         options.success.call();
       }
@@ -173,14 +173,14 @@ function _drupalgap_api_get_csrf_token(call_options, options) {
 function drupalgap_api_default_options() {
   var default_options = {};
   default_options = {
-    'url':'',
-    'type':'get',
-    'async':true,
-    'data':'',
-    'dataType':'json',
-    'endpoint':drupalgap.settings.default_services_endpoint,
-    'site_path':drupalgap.settings.site_path,
-    'success':function(result){
+    'url': '',
+    'type': 'get',
+    'async': true,
+    'data': '',
+    'dataType': 'json',
+    'endpoint': drupalgap.settings.default_services_endpoint,
+    'site_path': drupalgap.settings.site_path,
+    'success': function(result) {
       drupalgap_loading_message_hide();
       // Invoke hook_services_success().
       module_invoke_all('services_success', this.service_resource, result);
@@ -202,14 +202,14 @@ function drupalgap_api_default_options() {
         cache = null; // Enable garbage collection
       }
     },
-    'error':function(jqXHR, textStatus, errorThrown){
+    'error': function(jqXHR, textStatus, errorThrown) {
       // TODO - this is a good spot for a hook
       // e.g. hook_drupalgap_api_postprocess
       drupalgap_loading_message_hide();
       console.log(JSON.stringify({
-        "jqXHR":jqXHR,
-        "textStatus":textStatus,
-        "errorThrown":errorThrown,
+        'jqXHR': jqXHR,
+        'textStatus': textStatus,
+        'errorThrown': errorThrown
       }));
       extra_msg = '';
       if (jqXHR.statusText && jqXHR.statusText != errorThrown) {
@@ -221,16 +221,16 @@ function drupalgap_api_default_options() {
       //if (this.error_alert) {
         navigator.notification.alert(
           textStatus + ' (' + errorThrown + ') ' + extra_msg,
-          function(){},
+          function() {},
           'DrupalGap API Call Error',
           'OK'
         );
       //}
     },
-    'error_alert':true, /* an option to supress the default error call back's
+    'error_alert': true, /* an option to supress the default error call back's
                            alert dialog window, use: options.error_alert = false;
                            use with caution */
-    'service_resource':null, /* holds a copy of the service resource being
+    'service_resource': null /* holds a copy of the service resource being
                                 called e.g. user/login.json,
                                 system/connect.json */
   };
@@ -304,7 +304,7 @@ function hook_field_data_string(entity_type, bundle, entity, field, instance, la
 function hook_field_formatter_view(entity_type, entity, field, instance, langcode, items, display) { }
 
 /**
- * Used by modules to provide field widgets for form element items. 
+ * Used by modules to provide field widgets for form element items.
  */
 function hook_field_widget_form(form, form_state, field, instance, langcode, items, delta, element) { }
 

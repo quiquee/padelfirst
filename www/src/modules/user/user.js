@@ -30,7 +30,7 @@ function user_listing() {
         'attributes': {'id': 'user_listing_items'}
       }
     };
-    console.log('PlayersModule_list - list created' ) ;
+    console.log('PlayersModule_list - list created');
     return content;
   }
   catch (error) { console.log('user_listing - ' + error); }

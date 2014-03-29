@@ -1,35 +1,35 @@
 drupalgap.services.system = {
-  'connect':{
-    'options':{
-      'type':'post',
-      'path':'system/connect.json',
-      'success':function(data){
+  'connect': {
+    'options': {
+      'type': 'post',
+      'path': 'system/connect.json',
+      'success': function(data) {
         // Set the session id.
         //drupalgap.sessid = data.sessid;
         // Extract data and set drupalgap variables.
         Drupal.user = data.user;
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         drupalgap.api.call(drupalgap_chain_callbacks(drupalgap.services.system.connect.options, options));
       }
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'System Connect Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- connect -->
-  'get_variable':{
-    'options':{
-      'type':'post',
-      'path':'system/get_variable.json',
+  'get_variable': {
+    'options': {
+      'type': 'post',
+      'path': 'system/get_variable.json'
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.name) {
           alert('drupalgap.services.system.get_variable.call - missing argument name');
@@ -45,19 +45,19 @@ drupalgap.services.system = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'System Get Variable Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- get_variable -->
-  'set_variable':{
-    'options':{
-      'type':'post',
-      'path':'system/set_variable.json',
+  'set_variable': {
+    'options': {
+      'type': 'post',
+      'path': 'system/set_variable.json'
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.name) {
           alert('drupalgap.services.system.set_variable.call - missing argument "name"');
@@ -76,19 +76,19 @@ drupalgap.services.system = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'System Set Variable Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- set_variable -->
-  'del_variable':{
-    'options':{
-      'type':'post',
-      'path':'system/del_variable.json',
+  'del_variable': {
+    'options': {
+      'type': 'post',
+      'path': 'system/del_variable.json'
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.name) {
           alert('drupalgap.services.system.del_variable.call - missing argument "name"');
@@ -101,12 +101,12 @@ drupalgap.services.system = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'System Delete Variable Error',
           'OK'
         );
       }
-    },
-  }, // <!-- del_variable -->
+    }
+  } // <!-- del_variable -->
 };
 

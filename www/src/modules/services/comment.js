@@ -1,10 +1,10 @@
 drupalgap.services.comment = {
-  'create':{
-    'options':{
-      'type':'post',
-      'path':'comment.json',
+  'create': {
+    'options': {
+      'type': 'post',
+      'path': 'comment.json'
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.comment.create.options, options);
         api_options.data = drupalgap_comment_assemble_data(options);
@@ -13,18 +13,18 @@ drupalgap.services.comment = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'Comment Create Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- create -->
-  'retrieve':{
-    'options':{
-      'type':'get',
-      'path':'comment/%cid.json',
-      'success':function(comment){
+  'retrieve': {
+    'options': {
+      'type': 'get',
+      'path': 'comment/%cid.json',
+      'success': function(comment) {
         drupalgap_entity_render_content('comment', comment);
         // TODO - a good opportunity for a hook to come in
         // and modify comment.content if developer wants.
@@ -32,14 +32,14 @@ drupalgap.services.comment = {
         // Extract the comment_body and set at a top level in
         // the comment object for easy access.
         comment.body = comment.comment_body[comment.language][0].value;
-      },
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         if (!options.cid) {
           navigator.notification.alert(
             'No comment id provided!',
-            function(){},
+            function() {},
             'Comment Retrieve Error',
             'OK'
           );
@@ -52,21 +52,21 @@ drupalgap.services.comment = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'Comment Retrieve Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- retrieve -->
-  'update':{
-    'options':{
-      'type':'put',
-      'path':'comment/%cid.json',
-      'success':function(result){
-      },
+  'update': {
+    'options': {
+      'type': 'put',
+      'path': 'comment/%cid.json',
+      'success': function(result) {
+      }
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.comment.update.options, options);
         api_options.data = drupalgap_comment_assemble_data(options);
@@ -76,19 +76,19 @@ drupalgap.services.comment = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'Comment Update Error',
           'OK'
         );
       }
-    },
+    }
   }, // <!-- update -->
-  'del':{
-    'options':{
-      'type':'delete',
-      'path':'comment/%cid.json',
+  'del': {
+    'options': {
+      'type': 'delete',
+      'path': 'comment/%cid.json'
     },
-    'call':function(options){
+    'call': function(options) {
       try {
         var api_options = drupalgap_chain_callbacks(drupalgap.services.comment.del.options, options);
         api_options.path = 'comment/' + options.cid + '.json';
@@ -98,13 +98,13 @@ drupalgap.services.comment = {
       catch (error) {
         navigator.notification.alert(
           error,
-          function(){},
+          function() {},
           'Comment Delete Error',
           'OK'
         );
       }
-    },
-  }, // <!-- delete -->
+    }
+  } // <!-- delete -->
 };
 
 /**
@@ -132,7 +132,7 @@ function drupalgap_comment_assemble_data(options) {
   }
   if (options.comment.comment_body) {
     var lng = language_default();
-    data += '&comment_body[' + lng +'][0][value]=' +
+    data += '&comment_body[' + lng + '][0][value]=' +
       encodeURIComponent(options.comment.comment_body[lng][0].value);
   }
   return data;

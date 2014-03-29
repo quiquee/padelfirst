@@ -3,10 +3,10 @@
  */
 function BookingModule_block_info() {
   var blocks = {
-	booking_block:{
-      delta:'booking_block',
-      module:'BookingModule',
-    },
+	booking_block: {
+      delta: 'booking_block',
+      module: 'BookingModule'
+    }
   };
   return blocks;
 }
@@ -34,7 +34,7 @@ function BookingModule_menu() {
       'page_callback': 'BookingModule_book'
     }
   };
-  
+
   return items;
 }
 

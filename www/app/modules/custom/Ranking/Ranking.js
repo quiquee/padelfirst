@@ -3,10 +3,10 @@
  */
 function Ranking_block_info() {
   var blocks = {
-	booking_block:{
-      delta:'booking_block',
-      module:'Ranking',
-    },
+	booking_block: {
+      delta: 'booking_block',
+      module: 'Ranking'
+    }
   };
   return blocks;
 }
@@ -35,25 +35,34 @@ function Ranking_menu() {
       'pageshow': 'Ranking_pageshow'
     }
   };
-  
+
   return items;
 }
 
 function Ranking_list() {
 	try {
-		// Place an empty item list that will hold a list of users.
+		// Place an empty item tabkle with ranking.
+		var header = [];
+		header.push({data: 'Pos'});
+		header.push({data: 'Team'});
+		header.push({data: 'J'});
+		header.push({data: 'G'});
+		header.push({data: 'P'});
+		header.push({data: 'F'});
+		header.push({data: 'C'});
+		var rows = [];
 		var content = {
-				'user_listing': {
-					'theme': 'jqm_item_list',
-					'title': 'Padelfirst Rankings',
-					'items': [],
-					'attributes': {'id': 'RankingList_items'}
-				}		
-		};	
-		 console.log('Ranking_list - list created' ) ;
+				'ranking_list': {
+					'theme': 'table',
+					'header': header,
+					'rows': rows,
+					'attributes': {'id': 'Ranking_list'}
+				}
+		};
+		 console.log('Ranking_list - list created');
 		return content;
 	}
-	catch (error) { console.log('Ranking_list - ' + error); 
+	catch (error) { console.log('Ranking_list - ' + error);
 	}
 }
 
@@ -68,16 +77,20 @@ function Ranking_pageshow() {
 			'path': 'drupalgap/views_datasource/padel_ranking',
 			'success': function(data) {
 				// Extract the users into items, then drop them in the list.
-				var items = [];
+				var rows = [];
 				var rank = 0;
 				$.each(data.ranking, function(index, object) {
-					rank=rank+1;
-					items.push(l(rank + ' ' + object.position.team + ' ' + object.position.Ganados , 'team/' + object.position.team));
-					
+					rank = rank + 1;
+					var pos = object.position;
+					rows.push([rank, 
+					           l(pos.team,"leage/matches/?team=" + pos.team), 
+					           pos.Jugados, pos.Ganados, pos.Perdidos, pos.SetsFavor, pos.SetsContra]);
+
 				});
-				drupalgap_item_list_populate('#RankingList_items', items);
+				drupalgap_table_populate('#Ranking_list', rows);
 			}
 		});
+		console.log( $('#Ranking_list').html());
 	}
 	catch (error) { console.log('Ranking_pageshow - ' + error); }
 }

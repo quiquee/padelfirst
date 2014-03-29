@@ -309,14 +309,15 @@ function theme_table(variables) {
   try {
     var html = '<table ' + drupalgap_attributes(variables.attributes) + '>';
     if (variables.header) {
-      html += '<tr>';
+      html += '<thead><tr>';
       $.each(variables.header, function(index, column) {
           if (column.data) {
-            html += '<th>' + column.data + '</th>';
+            html += '<td>' + column.data + '</td>';
           }
       });
-      html += '</tr>';
+      html += '</tr></thead>';
     }
+    html += '<tbody>';
     if (variables.rows) {
       $.each(variables.rows, function(row_index, row) {
           html += '<tr>';
@@ -328,7 +329,8 @@ function theme_table(variables) {
           html += '</tr>';
       });
     }
-    return html + '</table>';
+    // console.log('theme_table - ' + html + '</tbody></table>');
+    return html + '</tbody></table>';
   }
   catch (error) { console.log('theme_table - ' + error); }
 }
