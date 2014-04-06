@@ -1,4 +1,0 @@
-padelfirst
-==========
-
-A padelfirst application
