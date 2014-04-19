@@ -9,9 +9,9 @@ window.localStorage.clear();
 /* Drupal Paths */
 
 // Site Path (do not use a trailing slash)
-// Drupal.settings.site_path = 'http://www.padelfirst.ch'; // e.g.
+Drupal.settings.site_path = 'http://www.padelfirst.ch'; // e.g.
 // http://www.example.com
-Drupal.settings.site_path = 'http://localhost/padelfirst-proxy';
+//Drupal.settings.site_path = 'http://localhost/padelfirst-proxy';
 
 // Default Services Endpoint Path
 Drupal.settings.endpoint = 'drupalgap';
@@ -25,8 +25,8 @@ Drupal.settings.language_default = 'und';
 /* Drupal Caching */
 
 // Set to true to enable local storage caching.
-Drupal.settings.cache.entity.enabled = true;
-Drupal.settings.cache.views.enabled = true;
+Drupal.settings.cache.entity.enabled = false;
+Drupal.settings.cache.views.enabled = false;
 
 // Number of seconds before cached copy expires. Set to 0 to cache forever, set
 // to 60 for one minute, etc.
@@ -97,15 +97,7 @@ drupalgap.settings.menus = {}; // Do not remove this line.
 drupalgap.settings.menus['user_menu_anonymous'] = {
   links : [ 
     {
-    title : 'Content',
-    path : 'node',
-    options : {
-      attributes : {
-        'data-theme' : 'star'
-      }
-    }
-  }, {
-    title : 'Connexion',
+    title : 'Conexión',
     path : 'user/login',
     options : {
       attributes : {
@@ -113,7 +105,7 @@ drupalgap.settings.menus['user_menu_anonymous'] = {
       }
     }
   }, {
-    title : 'S\'enregistrer',
+    title : 'Registro',
     path : 'user/register',
     options : {
       attributes : {
@@ -126,7 +118,7 @@ drupalgap.settings.menus['user_menu_anonymous'] = {
 // User Menu Authenticated
 drupalgap.settings.menus['user_menu_authenticated'] = {
   links : [ {
-    title : 'Profile',
+    title : 'Perfil',
     path : 'user',
     options : {
       attributes : {
@@ -134,7 +126,7 @@ drupalgap.settings.menus['user_menu_authenticated'] = {
       }
     }
   }, {
-    title : 'Deconnexion',
+    title : 'Logout',
     path : 'user/logout',
     options : {
       attributes : {
@@ -142,7 +134,7 @@ drupalgap.settings.menus['user_menu_authenticated'] = {
       }
     }
   }, {
-    title : 'Reservations',
+    title : 'Reserva',
     path : 'BookingModule/book',
     options : {
       attributes : {
@@ -155,14 +147,22 @@ drupalgap.settings.menus['user_menu_authenticated'] = {
 // Main Menu
 drupalgap.settings.menus['main_menu'] = {
   links : [ {
-    title : 'Players',
-    path : 'PlayersModule/list',
+    title : 'Forum',
+    path : 'taxonomy/vocabulary/2',
     options : {
       attributes : {
         'data-icon' : 'grid'
       }
     }
   }, {
+    title : 'Jugadores',
+    path : 'PlayersModule/list',
+    options : {
+      attributes : {
+        'data-icon' : 'grid'
+      }
+    }
+  },{
     title : 'Ranking',
     path : 'Ranking/list',
     options : {
@@ -200,7 +200,7 @@ drupalgap.settings.blocks.padelfirst = {
   sub_navigation : {
     main_menu : {
       roles : {
-        value : [ 'anonymous user' ],
+        value : [ 'anonymous user','authenticated user' ],
         mode : 'include'
       }
     },
